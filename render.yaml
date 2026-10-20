@@ -1,0 +1,47 @@
+# Blueprint для Render: бот — это Background Worker (порта нет, висит на polling).
+# Секреты в дашборде Render, здесь только не-секретные дефолты.
+services:
+  - type: worker
+    name: tos-bot
+    runtime: python
+    buildCommand: pip install -e .
+    startCommand: python -m tos_bot
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.9
+      # основной чат: Groq + Qwen. id модели сверь в консоли Groq
+      - key: OPENAI_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: OPENAI_MODEL
+        value: qwen/qwen3.8-27b
+      # Без OCR_API_KEY (Mistral) сканы и фото вернут понятную ошибку,
+      # обычные pdf/docx/txt/ссылки продолжат работать.
+      - key: OCR_ENABLED
+        value: 1
+      - key: CHUNK_CONCURRENCY
+        value: 2
+      - key: DAILY_LIMIT_PER_USER
+        value: 30
+      - key: CACHE_MAX_ENTRIES
+        value: 200
+      - key: CACHE_TTL_HOURS
+        value: 168
+      - key: BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: FALLBACK_API_KEY
+        sync: false
+      # Пусто = бот открыт всем. Для демо/продакшена впишите свой Telegram ID.
+      - key: ALLOWED_USER_IDS
+        sync: false
+      - key: OCR_API_KEY
+        sync: false
+
+# Постоянная квота: на free-плане диск эфемерный.
+# Для строгого учёта раскомментируйте disk и QUOTA_DB_PATH (нужен платный план):
+#    disk:
+#      name: tos-bot-data
+#      mountPath: /var/data
+#      sizeGB: 1
+#      QUOTA_DB_PATH: /var/data/quota.db

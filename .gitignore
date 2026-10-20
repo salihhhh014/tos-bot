@@ -1,0 +1,32 @@
+# секреты и локальное
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.log
+
+# временные файлы бота (скачанные документы)
+tmp/
+downloads/
+
+# sqlite с квотой — у каждого своя, в репо ей нечего делать
+data/*.db
+data/*.db-*
+
+# ide / os
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
