@@ -70,5 +70,5 @@ SQLite, httpx, trafilatura, pypdf, python-docx, pytest, ruff, GitHub Actions, Do
 ## Ссылки
 
 - Репозиторий: <https://github.com/salihhhh014/tos-bot>
-- Демо-бот: добавить ссылку после деплоя
-- Скриншоты: `docs/screenshots/`
+- Демо-бот: <https://t.me/tos_reader_bot>
+- Скриншоты: `docs/screenshots/` (добавить после записи демо)
